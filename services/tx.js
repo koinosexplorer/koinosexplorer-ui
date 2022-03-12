@@ -5,13 +5,13 @@ class Tx extends JSONRequest {
     super({ bakend: process.env.BAKEND, blockchain: process.env.BLOCKCHAIN })
   }
   getTxLatest() {
-    return this.getPrepared('/v1/tx/latest')
+    return this.getPrepared('/v1/tx/latest', { page_size: 30 })
   }
   getTxById(id) {
-    return this.getPrepared(`/v1/tx/${id}`)
+    return this.getPrepared(`/v1/tx/${id}`, { page_size: 30 })
   }
   getTxByAddress(id) {
-    return this.getPrepared(`/v1/tx/address/${id}`)
+    return this.getPrepared(`/v1/tx/address/${id}`, { page_size: 30 })
   }
 }
 
