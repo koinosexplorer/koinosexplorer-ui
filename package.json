@@ -1,0 +1,38 @@
+{
+  "name": "koinosexplorer-ui",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/koinosexplorer/koinosexplorer-ui.git"
+  },
+  "keywords": [],
+  "author": "",
+  "bugs": {
+    "url": "https://github.com/koinosexplorer/koinosexplorer-ui/issues"
+  },
+  "homepage": "https://github.com/koinosexplorer/koinosexplorer-ui#readme",
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.3.0",
+    "@fortawesome/free-brands-svg-icons": "^6.0.0",
+    "@fortawesome/free-solid-svg-icons": "^6.0.0",
+    "@fortawesome/react-fontawesome": "^0.1.17",
+    "axios": "^0.26.1",
+    "bitcoin-address-validation": "^2.2.1",
+    "bootstrap": "^5.1.3",
+    "dot-object": "^2.1.4",
+    "lodash": "^4.17.21",
+    "moment": "^2.29.1",
+    "next": "^12.1.0",
+    "react": "^17.0.2",
+    "react-bootstrap": "^2.2.0",
+    "react-dom": "^17.0.2"
+  }
+}

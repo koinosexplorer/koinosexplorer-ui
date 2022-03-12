@@ -1,0 +1,92 @@
+a {
+  color: inherit; /* blue colors for links too */
+  text-decoration: inherit; /* no underline */
+}
+
+/* colors 
+Koinos Deep Purple 	25174E 	Koinos Deep Purple Swatch
+Secondary Purple 	6F00F6 	Secondary Purple Swatch
+Accent Yellow 	FFCF21 	Accent Yellow Swatch
+Almost Black 	090221 	Almost Black Swatch
+Almost White 	F5F5F5 	Almost White Swatch
+*/
+
+body {
+  background-color: #090221;
+}
+
+@font-face {
+  font-family: 'SpaceGrotesk-Bold'; 
+  src: url("/fonts/SpaceGrotesk-Bold.otf") format("opentype");
+  font-style: 700;
+}
+
+@font-face {
+  font-family: 'SpaceGrotesk-Light'; 
+  src: url("/fonts/SpaceGrotesk-Light.otf") format("opentype");
+  font-style: 300;
+}
+
+@font-face {
+  font-family: 'SpaceGrotesk-Medium'; 
+  src: url("/fonts/SpaceGrotesk-Medium.otf") format("opentype");
+  font-style: 500;
+}
+
+@font-face {
+  font-family: 'SpaceGrotesk-Regular'; 
+  src: url("/fonts/SpaceGrotesk-Regular.otf") format("opentype");
+  font-style: 400;
+}
+
+/* Typography */
+h1,h2,h3,h4,h5,h6,strong,.bold {
+  font-family: 'SpaceGrotesk-Bold', sans-serif;
+}
+
+body,p,div,span {
+  font-family: 'SpaceGrotesk-Regular', sans-serif;
+}
+
+/* Navbar & Navbar link style */
+
+nav .navbar-brand a {
+  color: #6F00F6;
+  font-family: 'SpaceGrotesk-Bold', sans-serif;
+}
+
+nav#main-nav.a {
+  color: #F5F5F5;
+  border-bottom: 2px solid #FFCF21;
+}
+
+a {
+  text-decoration:none;
+}
+
+.underline{
+  position: relative;
+}
+
+.underline::before{
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 0;
+  height: 2px;
+  background-color: #FFCF21;
+  transition: width 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .underline:hover::before{
+    left: 0;
+    right: auto;
+    width: 100%;
+  }
+}
+
+.text-white{
+  color:#F5F5F5;
+}
