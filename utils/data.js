@@ -1,5 +1,6 @@
 import dot from 'dot-object';
-import { forIn as _forIn } from 'lodash';
+import { forIn as _forIn, get as _get } from 'lodash';
+import * as base64 from "byte-base64";
 
 export const dotData = (data) => {
   var row = {};
@@ -18,4 +19,9 @@ export const isBase64 = (str) => {
   } catch(e) {
     return false
   }
+}
+
+export const getNonce = (_nonce) => {
+  let nonce = base64.base64ToBytes(_nonce)
+  return _get(nonce, "[1]", _nonce);
 }

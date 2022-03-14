@@ -1,6 +1,6 @@
 module.exports = {
   env: {
-    BAKEND: 'http://localhost:8080/',
+    BAKEND: 'http://v3.koinosexplorer.com:8080/',
     BLOCKCHAIN: 'https://api.koinos.io',
   },
 }

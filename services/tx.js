@@ -8,10 +8,10 @@ class Tx extends JSONRequest {
     return this.getPrepared('/v1/tx/latest', { page_size: 30 })
   }
   getTxById(id) {
-    return this.getPrepared(`/v1/tx/${id}`, { page_size: 30 })
+    return this.getPrepared(`/v1/tx/${id}`)
   }
-  getTxByAddress(id) {
-    return this.getPrepared(`/v1/tx/address/${id}`, { page_size: 30 })
+  getTxByAddress(id, page = 0, page_size = 30 ) {
+    return this.getPrepared(`/v1/tx/address/${id}`, { page, page_size })
   }
 }
 

@@ -13,7 +13,7 @@ import Objectr from '@/components/objectr';
 import { tx } from '@/services/tx';
 
 // utils
-import { dotData } from '@/utils/data';
+import { dotData, getNonce } from '@/utils/data';
 
 function index(props) {
   return (
@@ -74,11 +74,15 @@ function index(props) {
                         </tr>
                         <tr>
                           <td> Nonce </td>
-                          <td> { _get(props, 'transactions_metadata.header.nonce', '') } </td>
+                          <td> { getNonce(_get(props, 'transactions_metadata.header.nonce', '0') ) } </td>
                         </tr>
                         <tr>
                           <td> Block num </td>
-                          <td> { _get(props, 'block_num', '') } </td>
+                          <td>
+                            <Link href={`/block/${ _get(props, 'block_num', '') }`} className="link_next">
+                              <a>{ _get(props, 'block_num', '') }</a>
+                            </Link>
+                          </td>
                         </tr>
                         <tr>
                           <td> RC limit</td>

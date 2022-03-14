@@ -10,8 +10,8 @@ class Blocks extends JSONRequest {
   getBlocksById(id) {
     return this.getPrepared(`/v1/block/${id}`, { page_size: 30 })
   }
-  getBlocksByProducer(id) {
-    return this.getPrepared(`/v1/block/producer/${id}`, { page_size: 30 })
+  getBlocksByProducer(id, page = 0, page_size = 30) {
+    return this.getPrepared(`/v1/block/producer/${id}`, { page, page_size })
   }
 }
 

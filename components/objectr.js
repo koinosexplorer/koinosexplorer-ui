@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Table, Form } from 'react-bootstrap';
+import { Table, Form, ListGroup } from 'react-bootstrap';
 import { get as _get } from 'lodash';
 
 // utils
@@ -30,7 +30,17 @@ function Objectr(_props) {
     return dt
   }
   if(Array.isArray(props)) {
-    return props.map((d, keytt)=> <Objectr commonProps={d} key={keytt} />)
+    return (
+      <ListGroup>
+        {
+          props.map((d, keytt)=> (
+            <ListGroup.Item key={keytt}>
+              <Objectr commonProps={d}/>
+            </ListGroup.Item>
+          ))
+        }
+      </ListGroup>
+    )
   }
   if(typeof props == 'object') {
     let heads = Object.keys(props)
