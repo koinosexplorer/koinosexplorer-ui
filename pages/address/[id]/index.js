@@ -4,7 +4,7 @@ import moment from 'moment';
 import copyClipboard from 'copy-text-to-clipboard';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Row, Col, Table, Card, Tab, Nav } from 'react-bootstrap';
-import { get as _get } from 'lodash';
+import { get as _get, uniq as _uniq } from 'lodash';
 
  
 // components global
@@ -29,6 +29,8 @@ function index(props) {
   let txs_total = _get(props, 'txs.page.total', 0);
   let blocks = _get(props, 'blocks.data', []);
   let blocks_total = _get(props, 'blocks.page.total', 0);
+  let tokens = _get(props, 'tokens.data', []);
+  let tokens_total = _get(props, 'tokens.page.total', 0);
 
   return (
     <>
@@ -138,7 +140,46 @@ function index(props) {
                       </Table>
                     </Tab.Pane>
                     <Tab.Pane eventKey="tokens">
-                      <h5 className="my-4 text-center"> Tokens history under construction </h5>
+
+                      <Table striped bordered responsive>
+                        <thead>
+                          <tr>
+                            <th>Transaction</th>
+                            <th>From</th>
+                            <th>To</th>
+                            <th>Value</th>
+                            <th>Token</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+
+                          {
+                            tokens.map((t, bkey) => (
+                              <tr key={bkey}>
+                                <td>
+                                  <Link href={`/tx/${ _get(t,'transaction_id', '0') }`} className="link_next">
+                                    <a>{ _get(t,'transaction_id', '0').substring(0, 20) + '...' }</a>
+                                  </Link>
+                                </td>
+                                <td>
+                                  <Link href={`/address/${ _get(t,'from', '') }`} className="link_next">
+                                    <a>{ _get(t,'from', '') }</a>
+                                  </Link>
+                                </td>
+                                <td>
+                                  <Link href={`/address/${ _get(t,'to', '') }`} className="link_next">
+                                    <a>{ _get(t,'to', '') }</a>
+                                  </Link>
+                                </td>
+                                <td> { Number( _get(t,'value', "0") ) / Number( "1".padEnd(Number( _get(t,'token_info.decimals', "0") )+1, "0")) } </td>
+                                <td> { _get(t, 'token_info.symbol') } </td>
+                              </tr>
+                            ))
+                          }
+
+                        </tbody>
+                      </Table>
+
                     </Tab.Pane>
 
                     <Tab.Pane eventKey="blocks">
@@ -201,7 +242,8 @@ export async function getServerSideProps({ params }) {
   let _props = {
     address: id,
     txs: [],
-    blocks: []
+    blocks: [],
+    tokens: []
   }
   /**
    * Request data
@@ -239,6 +281,32 @@ export async function getServerSideProps({ params }) {
     }
     blocksProducers.data = resulFinal;
     _props["blocks"] = blocksProducers;
+  }
+
+  let tokensTransactions;
+  try {
+    tokensTransactions = await tokens.getTransfersByAddress(id);
+  } catch (error) {}
+  if(_get(tokensTransactions, 'success', false)) {
+
+    let tokensFull = {}
+    let _tokens = _uniq(tokensTransactions.data.map(t => t.token_id));
+    for (let indexT = 0; indexT < _tokens.length; indexT++) {
+      let token_id = _tokens[indexT];
+      let tokeDt = await tokens.getToken(token_id);
+      tokensFull[token_id] = tokeDt.data
+    }
+
+    let resultData = tokensTransactions.data;
+    let resulFinal = [];
+    for (let index = 0; index < resultData.length; index++) {
+      let tokenTransfer = resultData[index];
+      console.log(tokenTransfer)
+      tokenTransfer["token_info"] = tokensFull[tokenTransfer.token_id];
+      resulFinal.push(tokenTransfer);
+    }
+    tokensTransactions.data = resulFinal;
+    _props["tokens"] = tokensTransactions;
   }
 
   return {
