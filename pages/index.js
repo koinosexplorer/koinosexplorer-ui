@@ -220,7 +220,7 @@ export async function getServerSideProps() {
     latestBlocks = await blocks.getBlocksLatest();
     latestTx = await tx.getTxLatest();
   } catch (error) {}
-  if(latestBlocks.success && latestTx.success) {
+  if(_get(latestBlocks, 'success', false) && _get(latestTx, 'success', false)) {
     _props['blocks'] = latestBlocks.data;
     _props['tx'] = latestTx.data;
   }

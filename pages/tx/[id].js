@@ -177,7 +177,7 @@ export async function getServerSideProps({ params }) {
   try {
     txResult = await tx.getTxById(id);
   } catch (error) {}
-  if(txResult.success) {
+  if(_get(txResult, 'success', false)) {
     _props = txResult.data;
     _props.transactions_receipts = dotData(_props.transactions_receipts);
     _props.transactions_metadata = dotData(_props.transactions_metadata);

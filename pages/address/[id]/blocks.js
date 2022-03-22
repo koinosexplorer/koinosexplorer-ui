@@ -119,7 +119,7 @@ export async function getServerSideProps({ params, query }) {
   try {
     blocksProducers = await blocks.getBlocksByProducer(id, page<1 ? 0 : page-1, page_size);
   } catch (error) {}
-  if(blocksProducers.success) {
+  if(_get(blocksProducers, 'success', false)) {
     let resultData = blocksProducers.data;
     let resulFinal = [];
     for (let index = 0; index < resultData.length; index++) {

@@ -210,7 +210,7 @@ export async function getServerSideProps({ params }) {
   try {
     txAdddressResult = await tx.getTxByAddress(id);
   } catch (error) {}
-  if(txAdddressResult.success) {
+  if(_get(txAdddressResult, 'success', false)) {
     let resultData = txAdddressResult.data;
     let resulFinal = [];
     for (let index = 0; index < resultData.length; index++) {
@@ -228,7 +228,7 @@ export async function getServerSideProps({ params }) {
   try {
     blocksProducers = await blocks.getBlocksByProducer(id);
   } catch (error) {}
-  if(blocksProducers.success) {
+  if(_get(blocksProducers, 'success', false)) {
     let resultData = blocksProducers.data;
     let resulFinal = [];
     for (let index = 0; index < resultData.length; index++) {

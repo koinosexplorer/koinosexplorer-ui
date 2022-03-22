@@ -122,7 +122,7 @@ export async function getServerSideProps({ params, query }) {
   try {
     txAdddressResult = await tx.getTxByAddress(id, page<1 ? 0 : page-1, page_size);
   } catch (error) {}
-  if(txAdddressResult.success) {
+  if(_get(txAdddressResult, 'success', false)) {
     let resultData = txAdddressResult.data;
     let resulFinal = [];
     for (let index = 0; index < resultData.length; index++) {

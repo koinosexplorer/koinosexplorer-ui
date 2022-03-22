@@ -197,7 +197,7 @@ export async function getServerSideProps({ params }) {
   try {
     blockResult = await blocks.getBlocksById(id);
   } catch (error) {}
-  if(blockResult.success) {
+  if(_get(blockResult, 'success', false)) {
     _props = blockResult.data;
     _props.blocks_receipts = dotData(_props.blocks_receipts)
     _props.blocks_metadata = dotData(_props.blocks_metadata)
