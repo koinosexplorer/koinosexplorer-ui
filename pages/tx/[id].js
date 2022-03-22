@@ -67,8 +67,8 @@ function index(props) {
                         <tr>
                           <td> Address </td>
                           <td>
-                            <Link href={`/address/${  _get(props, 'payer', '') }`} className="link_next">
-                              <a>{ _get(props, 'payer', '') }</a>
+                            <Link href={`/address/${  _get(props, 'caller', '') }`} className="link_next">
+                              <a>{ _get(props, 'caller', '') }</a>
                             </Link>
                           </td>
                         </tr>
