@@ -141,6 +141,15 @@ function index(props) {
                     </Tab.Pane>
                     <Tab.Pane eventKey="tokens">
 
+                      <p>
+                        Latest 30 from a total of
+                        <Link href={`/address/${address}/tokens`} className="link_next">
+                          <a> { tokens_total } </a>
+                        </Link>
+                        tokens transfers
+                      </p>
+
+
                       <Table striped bordered responsive>
                         <thead>
                           <tr>
