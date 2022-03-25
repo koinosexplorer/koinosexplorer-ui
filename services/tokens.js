@@ -10,8 +10,11 @@ class Tokens extends JSONRequest {
   getHolders(tokenId, page = 0, page_size = 30) {
     return this.getPrepared(`/v1/token/holders/${tokenId}`, { page, page_size })
   }
+  getTransfersByToken(tokenId, page = 0, page_size = 30) {
+    return this.getPrepared(`/v1/token/transactions/${tokenId}`, { page, page_size })
+  }
   getTransfersByAddress(addressId, page = 0, page_size = 30) {
-    return this.getPrepared(`/v1/token/transactions/${addressId}`, { page, page_size })
+    return this.getPrepared(`/v1/token/transactions/address/${addressId}`, { page, page_size })
   }
 }
 
