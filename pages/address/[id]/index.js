@@ -181,7 +181,11 @@ function index(props) {
                                   </Link>
                                 </td>
                                 <td> { Number( _get(t,'value', "0") ) / Number( "1".padEnd(Number( _get(t,'token_info.decimals', "0") )+1, "0")) } </td>
-                                <td> { _get(t, 'token_info.symbol') } </td>
+                                <td>
+                                  <Link href={`/token/${ _get(t,'token_info.token_id', '') }`} className="link_next">
+                                    { _get(t, 'token_info.symbol') }
+                                  </Link>
+                                </td>
                               </tr>
                             ))
                           }
