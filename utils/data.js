@@ -22,6 +22,7 @@ export const isBase64 = (str) => {
 }
 
 export const getNonce = (_nonce) => {
+  _nonce = _nonce.replace(/_/g, '/').replace(/-/g, '+');
   let nonce = base64.base64ToBytes(_nonce)
   return _get(nonce, "[1]", _nonce);
 }
